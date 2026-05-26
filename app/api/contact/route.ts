@@ -15,9 +15,9 @@ export async function POST(req: Request) {
       service: 'gmail',
 
       auth: {
-        user: 'alenovaistraveloficial@gmail.com',
-        pass: 'khej tddo xusc fmsg',
-      },
+  user: process.env.EMAIL_USER,
+  pass: process.env.EMAIL_PASS,
+}
     })
 
     await transporter.sendMail({
@@ -30,11 +30,12 @@ export async function POST(req: Request) {
           <h2>Nova solicitação recebida</h2>
 
           <hr />
-
+<p><strong>Origem:</strong> ${body.origin}</p>
           <p><strong>Destino:</strong> ${body.destination}</p>
 
-          ${formatDate(body.departure)}
-          ${formatDate(body.returnDate)}
+          <p><strong>Data ida:</strong> ${formatDate(body.departure)}</p>
+
+<p><strong>Data volta:</strong> ${formatDate(body.returnDate)}</p>
           <p><strong>Adultos:</strong> ${body.adults}</p>
 
           <p><strong>Crianças:</strong> ${body.children}</p>

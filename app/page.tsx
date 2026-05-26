@@ -12,6 +12,7 @@ export default function AlenovaisTravelPremiumLanding() {
 
   const [showForm, setShowForm] = useState(false)
 
+  const [origin, setOrigin] = useState('')
   const [destination, setDestination] = useState('')
 
   const [selectedStyle, setSelectedStyle] = useState('')
@@ -31,6 +32,8 @@ export default function AlenovaisTravelPremiumLanding() {
         <>
 
           <Hero
+            origin={origin}
+            setOrigin={setOrigin}
             destination={destination}
             setDestination={setDestination}
             departure={departure}
@@ -136,11 +139,12 @@ export default function AlenovaisTravelPremiumLanding() {
           {showForm && (
 
             <MultiStepForm
-              destination={destination}
-              departure={departure}
-              selectedStyle={selectedStyle}
-              onClose={() => setShowForm(false)}
-            />
+            origin={origin}
+            destination={destination}
+            departure={departure}
+            selectedStyle={selectedStyle}
+            onClose={() => setShowForm(false)}
+          />
 
           )}
 

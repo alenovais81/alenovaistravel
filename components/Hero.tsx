@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react'
 
 interface HeroProps {
+  origin: string
+  setOrigin: (value: string) => void
+
   destination: string
   setDestination: (value: string) => void
 
@@ -16,12 +19,18 @@ interface HeroProps {
 }
 
 export default function Hero({
+  origin,
+  setOrigin,
+
   destination,
   setDestination,
+
   departure,
   setDeparture,
+
   selectedStyle,
   setSelectedStyle,
+
   setShowForm,
 }: HeroProps) {
   const heroImages = [
@@ -75,61 +84,57 @@ export default function Hero({
 
         <div className="flex flex-col lg:flex-row gap-4 w-full max-w-6xl">
 
-  <div className="flex flex-col gap-2 w-full lg:flex-1">
-<label className="text-sm text-white/70 font-medium text-left pl-1">
-      Destino
-    </label>
+          <div className="flex flex-col gap-2 w-full lg:flex-1">
+            <label className="text-sm text-white/70 font-medium text-left pl-1">
+              Origem
+            </label>
 
-    <input
-      type="text"
-      value={destination}
-      onChange={(e) => setDestination(e.target.value)}
-      placeholder="Ex: Japão, Itália, Maldivas..."
-      className="w-full h-[72px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 px-6 text-lg outline-none focus:border-[#7C5CFF]"
-    />
-  </div>
+            <input
+              type="text"
+              value={origin}
+              onChange={(e) => setOrigin(e.target.value)}
+              placeholder="Ex: São Paulo, GRU, CGH..."
+              className="w-full h-[72px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 px-6 text-lg outline-none focus:border-[#7C5CFF]"
+            />
+          </div>
 
-  <div className="flex flex-col gap-2 w-full lg:w-[260px]">
-<label className="text-sm text-white/70 font-medium text-left pl-1">
-      Data da viagem
-    </label>
+          <div className="flex flex-col gap-2 w-full lg:flex-1">
+            <label className="text-sm text-white/70 font-medium text-left pl-1">
+              Destino
+            </label>
 
-    <input
-      type="date"
-      value={departure}
-      onChange={(e) => setDeparture(e.target.value)}
-      className="w-full h-[72px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 px-6 text-lg outline-none focus:border-[#7C5CFF]"
-    />
-  </div>
+            <input
+              type="text"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              placeholder="Ex: Japão, Itália, Maldivas..."
+              className="w-full h-[72px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 px-6 text-lg outline-none focus:border-[#7C5CFF]"
+            />
+          </div>
 
-  <div className="flex flex-col gap-2 w-full lg:w-[320px]">
-<label className="text-sm text-white/70 font-medium text-left pl-1">      Estilo da viagem
-    </label>
+          <div className="flex flex-col gap-2 w-full lg:w-[260px]">
+            <label className="text-sm text-white/70 font-medium text-left pl-1">
+              Data da viagem
+            </label>
 
-    <select
-      value={selectedStyle}
-      onChange={(e) => setSelectedStyle(e.target.value)}
-      className="w-full h-[72px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 px-6 text-lg outline-none focus:border-[#7C5CFF]"
-    >
-      <option value="">Selecione</option>
-      <option value="luxo">Luxo</option>
-      <option value="aventura">Aventura</option>
-      <option value="praia">Praia</option>
-      <option value="romântico">Romântico</option>
-      <option value="família">Família</option>
-    </select>
-  </div>
+            <input
+              type="date"
+              value={departure}
+              onChange={(e) => setDeparture(e.target.value)}
+              className="w-full h-[72px] rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 px-6 text-lg outline-none focus:border-[#7C5CFF]"
+            />
+          </div>
 
-  <div className="flex items-end w-full lg:w-auto">
-    <button
-      onClick={() => setShowForm(true)}
-      className="w-full lg:w-auto bg-[#7C5CFF] hover:bg-[#6D4CF7] transition-all duration-300 px-10 h-[72px] rounded-2xl font-black text-lg whitespace-nowrap min-w-[280px]"
-    >
-      Solicitar orçamento
-    </button>
-  </div>
+          <div className="flex items-end w-full lg:w-auto">
+            <button
+              onClick={() => setShowForm(true)}
+              className="w-full lg:w-auto bg-[#7C5CFF] hover:bg-[#6D4CF7] transition-all duration-300 px-10 h-[72px] rounded-2xl font-black text-lg whitespace-nowrap min-w-[280px]"
+            >
+              Planejar minha viagem
+            </button>
+          </div>
 
-</div>
+        </div>
       </div>
     </section>
   )

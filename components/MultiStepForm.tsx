@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 interface MultiStepFormProps {
+  origin?: string
   destination?: string
   departure?: string
   selectedStyle?: string
@@ -10,6 +11,7 @@ interface MultiStepFormProps {
 }
 
 export default function MultiStepForm({
+  origin = '',
   destination = '',
   departure = '',
   selectedStyle = '',
@@ -21,6 +23,7 @@ const [isSuccess, setIsSuccess] = useState(false)
 const [phoneError, setPhoneError] = useState('')
 
   const [formData, setFormData] = useState({
+    origin,
     destination,
     departure,
     returnDate: '',
@@ -136,39 +139,90 @@ const [phoneError, setPhoneError] = useState('')
                 Comece nos contando seu destino e período desejado.
               </p>
 
-              <div className="grid gap-5">
-                <input
-                  value={formData.destination}
-                  onChange={(e) =>
-                    updateField('destination', e.target.value)
-                  }
-                  placeholder="Destino desejado"
-                  className="bg-white/5 border border-white/10 rounded-2xl px-5 py-5"
-                />
 
-                <div className="grid md:grid-cols-2 gap-5">
-                  <input
-                    type="date"
-                    value={formData.departure}
-                    onChange={(e) =>
-                      updateField('departure', e.target.value)
-                    }
-                    className="bg-white/5 border border-white/10 rounded-2xl px-5 py-5"
-                  />
 
-                  <input
-                    type="date"
-                    value={formData.returnDate}
-                    onChange={(e) =>
-                      updateField('returnDate', e.target.value)
-                    }
-                    className="bg-white/5 border border-white/10 rounded-2xl px-5 py-5"
-                  />
-                </div>
+<div className="grid md:grid-cols-2 gap-5">
+ <div className="grid gap-5">
 
-                <p className="text-white/40 text-sm">
-                  Se ainda não tiver data definida, você pode preencher depois.
-                </p>
+  <div className="space-y-2">
+
+    <label className="text-sm text-white/60 pl-1">
+      Origem
+    </label>
+
+    <input
+      value={formData.origin}
+      onChange={(e) =>
+        updateField('origin', e.target.value)
+      }
+      placeholder="Ex: São Paulo, GRU..."
+className="w-full min-w-0 bg-white/5 border border-white/10 rounded-2xl px-5 py-5"    />
+
+  </div>
+
+  
+
+</div>
+  <div className="space-y-2">
+
+    <label className="text-sm text-white/60 pl-1">
+      Destino
+    </label>
+
+    <input
+      value={formData.destination}
+      onChange={(e) =>
+        updateField('destination', e.target.value)
+      }
+      placeholder="Ex: Japão, Itália..."
+className="w-full min-w-0 bg-white/5 border border-white/10 rounded-2xl px-5 py-5"    />
+
+  </div>
+
+<div className="grid md:grid-cols-2 gap-5">
+
+  <div className="space-y-2">
+
+    <label className="text-sm text-white/60 pl-1">
+      Data de ida
+    </label>
+
+    <input
+      type="date"
+      value={formData.departure}
+      onChange={(e) =>
+        updateField('departure', e.target.value)
+      }
+      className="w-full min-w-0 bg-white/5 border border-white/10 rounded-2xl px-5 py-5"
+    />
+
+  </div>
+
+  <div className="space-y-2">
+
+    <label className="text-sm text-white/60 pl-1">
+      Data de volta
+    </label>
+
+    <input
+      type="date"
+      value={formData.returnDate}
+      onChange={(e) =>
+        updateField('returnDate', e.target.value)
+      }
+      className="w-full min-w-0 bg-white/5 border border-white/10 rounded-2xl px-5 py-5"
+    />
+
+  
+
+</div>
+
+
+</div>
+
+<p className="text-white/40 text-sm mt-4">
+  Se ainda não tiver data definida, você pode preencher depois.
+</p>
               </div>
             </div>
           )}
@@ -355,6 +409,8 @@ const [phoneError, setPhoneError] = useState('')
               </p>
 
               <div className="grid gap-5">
+                
+                
                 <input
                   placeholder="Nome completo"
                   value={formData.name}
